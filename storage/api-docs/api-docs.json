@@ -1,0 +1,179 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "Description removed for better illustration of structure.",
+        "contact": {
+            "name": "Noticias",
+            "url": "https://google.com.br",
+            "email": "admin@example.test"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/noticias": {
+            "get": {
+                "tags": [
+                    "Noticias"
+                ],
+                "summary": "Retorna todas as noticias",
+                "operationId": "914e63ade6e06a3fc689556f6c295245",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Noticias"
+                ],
+                "summary": "Cria uma nova notícia",
+                "operationId": "8f1e4f67dea603a29aa7c4817f7810ea",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titulo",
+                                    "descricao"
+                                ],
+                                "properties": {
+                                    "titulo": {
+                                        "type": "string",
+                                        "example": "Título da Notícia"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "Descrição da Notícia"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notícia criada com sucesso"
+                    },
+                    "422": {
+                        "description": "Erro de validação"
+                    }
+                }
+            }
+        },
+        "/api/noticias/{id}": {
+            "get": {
+                "tags": [
+                    "Noticias"
+                ],
+                "summary": "Retorna uma notícia específica",
+                "operationId": "ce8296da4c297f04ae5dd0493b9c28b0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "404": {
+                        "description": "Notícia não encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Noticias"
+                ],
+                "summary": "Atualiza uma notícia existente",
+                "operationId": "5b09bf8daeef7b4b31b386dd7d814079",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "titulo",
+                                    "descricao"
+                                ],
+                                "properties": {
+                                    "titulo": {
+                                        "type": "string",
+                                        "example": "Novo Título da Notícia"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "Nova Descrição da Notícia"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notícia atualizada com sucesso"
+                    },
+                    "404": {
+                        "description": "Notícia não encontrada"
+                    },
+                    "422": {
+                        "description": "Erro de validação"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Noticias"
+                ],
+                "summary": "Deleta uma notícia existente",
+                "operationId": "fdd8118e7eb14c73fa335c678da6b85a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notícia deletada com sucesso"
+                    },
+                    "404": {
+                        "description": "Notícia não encontrada"
+                    }
+                }
+            }
+        }
+    }
+}
