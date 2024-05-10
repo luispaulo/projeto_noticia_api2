@@ -19,10 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/noticias', [NoticiaController::class, 'index']);
 Route::post('/noticias', [NoticiaController::class, 'store']);
 Route::get('/noticias/{id}', [NoticiaController::class, 'show']);
