@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Noticia;
 use App\Services\NoticiaService;
 
 class NoticiaController extends Controller
