@@ -1,16 +1,21 @@
 # PROJETO NOTICIA - API - BACK-END
 
-## Subindo o ambiente Laravel com Docker
+## Subindo a API com Docker
 Detalhes de como subir o projeto back-end com Docker.
 
 1. `docker-compose build`
 
 2. `docker-compose up`
+
+## Subindo a API direto no laravel
+Detalhes de como subir o projeto back-end com Docker.
+
+1. `php artisan serve`
   
 
-## Usando o Laravel para carregar a API
+## Carregando as migration e seeds
 
-Carregando as migration e seeds
+Executar os comandos para criar e popular as tabelas
 
 1. `php artisan migrate`
 
