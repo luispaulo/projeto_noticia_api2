@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Noticia;
+use App\Services\NoticiaService;
 
 class NoticiaController extends Controller
 {
+
+    protected $noticiaService;
+
+    public function __construct(NoticiaService $noticiaService)
+    {
+        $this->noticiaService = $noticiaService;
+    }
 
     /**
      * @OA\Get(
@@ -18,7 +26,7 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        return Noticia::all();
+        return $this->noticiaService->getAll();
     }
 
     /**
@@ -45,7 +53,7 @@ class NoticiaController extends Controller
             'descricao' => 'required',
         ]);
 
-        return Noticia::create($request->all());
+        return $this->noticiaService->create($request->all());
     }
 
     /**
@@ -68,7 +76,7 @@ class NoticiaController extends Controller
      */
     public function show($id)
     {
-        return Noticia::findOrFail($id);
+        return $this->noticiaService->find($id);
     }
 
     /**
@@ -100,10 +108,12 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $noticia = Noticia::findOrFail($id);
-        $noticia->update($request->all());
+        $request->validate([
+            'titulo' => 'required',
+            'descricao' => 'required',
+        ]);
 
-        return $noticia;
+        return $this->noticiaService->update($id, $request->all());
     }
 
     /**
@@ -126,9 +136,7 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        $noticia = Noticia::findOrFail($id);
-        $noticia->delete();
+        return $this->noticiaService->delete($id);
 
-        return response()->json(['message' => 'Notícia deletada com sucesso']);
     }
 }
