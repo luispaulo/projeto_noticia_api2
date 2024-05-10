@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,22 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/noticias', function () {
-    return response()->json(['message' => 'Lista de notícias']);
-});
-
-Route::post('/noticias', function () {
-
-});
-
-Route::get('/noticias/{id}', function ($id) {
-
-});
-
-Route::put('/noticias/{id}', function ($id) {
-
-});
-
-Route::delete('/noticias/{id}', function ($id) {
-
-});
+Route::get('/noticias', [NoticiaController::class, 'index']);
+Route::post('/noticias', [NoticiaController::class, 'store']);
+Route::get('/noticias/{id}', [NoticiaController::class, 'show']);
+Route::put('/noticias/{id}', [NoticiaController::class, 'update']);
+Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy']);
